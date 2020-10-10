@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Login</title>
+	<meta charset="UTF-8">
+	<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+	<!-- <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-database.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-storage.js"></script>
+	<script src="{{url_for('static',filename='js/login.js')}}"></script> -->
+	<style>
+	#uname{
+		background-color:#366e45;
+	}
+	#pass{
+		background-color:#00252e;
+	}
+	.form-control::-webkit-input-placeholder {
+  color: #FFFFFF;
+	}
+	.form-control:-moz-placeholder {
+	  color: #FFFFFF;
+	}
+	.form-control::-moz-placeholder {
+	  color: #FFFFFF;
+	}
+	.form-control::placeholder {
+	  color: #FFFFFF;
+	}
+	.form-control:-ms-input-placeholder {
+	  color: #FFFFFF;
+	}
+	</style>
+</head>
+<body style="font-family:'Raleway';">
+	<img src="{{ url_for('static', filename='images/' + 'background.jpg') }}" class="img-fluid" style="width:100%">
+	<div class="container">
+		<center>
+		<br>
+		<h1 style="font-size:100px"> Carvaan </h1>
+		<br>
+		<!-- <div class="row">
+			<div class="col"></div>
+			<div class="col-lg-4 col-sm-6">
+				<input class="form-control text-white" type="email" id="uname" placeholder="USERNAME">
+				<br>
+				<input class="form-control text-white" type="password" id="pass" placeholder="PASSWORD">
+			</div>
+			<div class="col"></div>
+			
+		</div> -->
+		<form method="POST" action="">
+            {{ form.hidden_tag() }}
+            
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Log In</legend>
+
+                <div class="form-group">
+                   
+
+                    {{ form.email.label(class="form-control-label") }}
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class="form-control form-control-lg") }}
+                    {% endif %}
+
+
+                    
+                </div>
+
+                <div class="form-group">
+                    {{ form.password.label(class="form-control-label") }}
+                    {% if form.password.errors %}
+                        {{ form.password(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.password(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-check">
+                    {{ form.remember(class="form-check-input") }}
+                    {{ form.remember.label(class="form-check-label") }}
+                </div>
+            </fieldset>
+
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+                <small class="text-muted ml-2">
+                    <a href="{{ url_for('users.reset_request') }}">Forgot Password?</a>
+                </small>
+            </div>
+
+        </form>
+		<br>
+		<h4 id="final" style="text-align: center;"></h4>
+		<br>
+		<button type="submit" class="btn btn-outline-dark" id="btn-login" onclick="SeedDB();">Submit</button>
+		<br>
+		<button type="button" class="btn btn-link" style="color:red">Forgot Password?</button>
+		</center>
+	</div>
+	<script>var firebaseConfig="{{firebaseConfig}}"</script>
+
+</body>
+</html>
