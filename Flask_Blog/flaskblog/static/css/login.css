@@ -1,0 +1,36 @@
+#uname{
+    background-color:#366e45;
+}
+#pass{
+    background-color:#00252e;
+}
+.form-control::-webkit-input-placeholder {
+color: #FFFFFF;
+}
+.form-control:-moz-placeholder {
+  color: #FFFFFF;
+}
+.form-control::-moz-placeholder {
+  color: #FFFFFF;
+}
+.form-control::placeholder {
+  color: #FFFFFF;
+}
+.form-control:-ms-input-placeholder {
+  color: #FFFFFF;
+}
+body {
+  font-family:'Raleway';
+}
+.img-fluid {
+   width:100%;
+}
+#final {
+text-align: center;
+}
+#btn1 {
+ color:red;
+}
+#content1 {
+  font-size:100px
+}
