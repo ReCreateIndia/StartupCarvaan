@@ -1,0 +1,63 @@
+body {
+    background-color: #312f32;
+    font-family:'Raleway';
+}
+@media (max-width: @screen-xs) {
+              
+    body{font-size: 10px;}
+}
+
+@media (max-width: @screen-sm) {
+          
+    body{font-size: 14px;}
+}
+.btn{
+   background-color: #f2e5dd;
+    color: black;
+    margin-top: 15px;
+    padding: 10px 30px;
+    margin-left: 12px;
+    border-radius: 8px;
+    font-size: 20px;
+
+}
+.pull-left {
+font-size: 100px;
+margin-top: 50px;
+color: white;
+}
+#team {
+margin-top: 80px;
+margin-left: 90px;
+}
+#email {
+margin-top: 31px;
+margin-left: 90px;
+}
+#number {
+margin-top: 30px;
+margin-left: 90px;
+}
+#checkbox {
+margin-top: 30px;
+color: #f2e5dd;
+margin-left: 90px;
+font-size: 20px;
+}
+#content {
+color: #f2e5dd;
+margin-top: 20px;
+margin-left: 90px;
+font-size:25px
+}
+.img-fluid {
+width:100%
+}
+#btn1 {
+margin-left: 210px;
+}
+#btn2 {
+ margin-top: 20px;
+ margin-left: 90px;
+ font-size:20px
+}
