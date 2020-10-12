@@ -6,102 +6,91 @@
 	<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/re')}}">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
 	<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-database.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-storage.js"></script>
-	
-    <style>
-        body {
-            background-color: #312f32;
-        }
-        @media (max-width: @screen-xs) {
-    body{font-size: 10px;}
-}
 
-@media (max-width: @screen-sm) {
-    body{font-size: 14px;}
-}
-        .btn{
-           background-color: #f2e5dd;
-            color: black;
-            margin-top: 15px;
-            padding: 10px 30px;
-            margin-left: 12px;
-            border-radius: 8px;
-            font-size: 20px;
-            
-        }
-
-    </style>
-    
 </head>
-<body style="font-family:'Raleway';">
-	<img src="{{ url_for('static', filename='images/' + 'register.jpg') }}" class="img-fluid" style="width:100%">
+
+<body>
+	<img src="{{ url_for('static', filename='images/' + 'register.jpg') }}" class="img-fluid">
     <div class="container">
 	    <div class="row" >
             <div class="col">
-		<h1 style="font-size: 100px; margin-top: 50px; color: white;"  class="pull-left"> Carvaan </h1>
+		<h1 class="pull-left"> Carvaan </h1>
 		<br>
             </div>
             <div class="col">
                 <form action="/login/index.html" id="query" class="form-inline" method="POST">
                     <script src="{{url_for('static',filename='js/register.js')}}"></script>
-                    <div class="form-group" style="margin-top: 80px; margin-left: 90px;"><br>
-                        <label for="team name" style="color: #f2e5dd; font-size: 20px;">Team Name - </label><br>
-                        <input type="text" name="Team" class="form-control" id="teamname">
+                    <div class="form-group" id="team" ><br>
+                        {{ form.team_name.label(class="form-control-label") }}
+
+                    {% if form.team_name.errors %}
+                        {{ form.team_name(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.team_name.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.team_name(class="form-control form-control-lg") }}
+                    {% endif %}
                     </div>
-                    <div class="form-group" style="margin-top: 31px; margin-left: 90px;">
-                        <label for="email" style="color: #f2e5dd; font-size: 20px;">Email - </label><br>
-                        <input class="form-control" id="email" name="Email" type="email">
+                    <div class="form-group"  id="email">
+                        {{ form.email.label(class="form-control-label") }}
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class="form-control form-control-lg") }}
+                    {% endif %}
                     </div>
-                    <div class="form-group" style="margin-top: 30px; margin-left: 90px;">
-                        <label for="phone number" style="color: #f2e5dd; font-size: 20px;">Phone number - </label><br>
-                        <input class="form-control" id="phonenumber" name="Phone" type="number">
+                    <div class="form-group" id="number">
+                        {{ form.phone_number.label(class="form-control-label") }}
+                    {% if form.phone_number.errors %}
+                        {{ form.phone_number(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.phone_number.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.phone_number(class="form-control form-control-lg") }}
+                    {% endif %}
                     </div>
-                    <div class="form-check" style="margin-top: 30px; color: #f2e5dd; margin-left: 90px; font-size: 20px;">
-                        <label class="form-check-label" for="exampleCheck1">
-                            <input type="radio" name="choose" value="Student" class="form-check-input" id="exampleCheck1">
-                            Student
-                        </label>
-                        <label class="form-check-label" for="exampleCheck1">
-                            <input type="radio" name="choose" value="Professional" class="form-check-input" id="exampleCheck1" style="margin-left: 25px;">
-                            Professional
-                        </label>
+                    <div class="form-check" id="checkbox">
+                        {{ form.upload1(class="form-check-input") }}
+                    {{ form.upload1.label(class="form-check-label") }}
+                        {{ form.upload2(class="form-check-input") }}
+                    {{ form.upload2.label(class="form-check-label") }}
+
                     </div>
-                    <h3 style="color: #f2e5dd; margin-top: 20px; margin-left: 90px; font-size:25px">Attach a document explaining the idea</h3>
-                    <div class="btn" style=" margin-top: 20px; margin-left: 90px; font-size:20px">
-                        <input type="file" id="image" accept="Idea/" name="uk">
-                        <input type="hidden" id="pic" accept="Idea/" name="Idea">
-                        <h4 id="upload"></h4>
-                        <button type="button" id="uploadButton" onclick="upload();" class="ui green button">Upload</button>
+                    <h3 id="content">Attach a document explaining the idea</h3>
+                    <div class="btn" id="btn2">
+                        {{ form.picture.label() }}
+                    {{ form.picture(class="form-control-file") }}
+                    {% if form.picture.errors %}
+                        {% for error in form.picture.errors %}
+                            <span class="text-danger">{{ error }}</span></br>
+                        {% endfor %}
+                    {% endif %}
+                        {{ form.submit(class="ui green button",id = "uploadButton") }}
                     </div>
-                    <input type="submit" class="btn" href="#" style="margin-left: 210px;">
+                    <div class="form-group">
+                {{ form.submit(class="btn",id = "btn1") }}
+            </div>
                 </form>
             </div>
        </div>
     </div>
-    
-    <script>
-        // Your web app's Firebase configuration
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-        apiKey: "AIzaSyBcoJLRqdLjrCg8cAG4Z7MI7P_ijDcHC5g",
-        authDomain: "vitual-share-market.firebaseapp.com",
-        databaseURL: "https://vitual-share-market.firebaseio.com",
-        projectId: "vitual-share-market",
-        storageBucket: "vitual-share-market.appspot.com",
-        messagingSenderId: "128045272026",
-        appId: "1:128045272026:web:8783f651c827b9ef790ee3",
-        measurementId: "G-84V4VLM34K"
-        };
-        var firebaseconfig="{{firebaseConfig}}";
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-        db.settings({ timestampsInSnapshots: true }); 
-    </script>
-    
+
 </body>
 </html>
